@@ -1,0 +1,28 @@
+const isLogged = true;
+
+function isLoggedin(logStatus) {
+    return new Promise((resolve, reject) => {
+        let rand = Math.random();
+        if (logStatus == true) {
+            resolve(rand)
+        } else {
+            reject(new Error("Not logged in"));
+        }
+    })
+}
+
+function isValid(rand) {
+    return new Promise((resolve, reject) => {
+        if (rand > 0.5) {
+            resolve({ name: "John", age: 24 })
+        }
+        else {
+            reject(new Error("is not valid"));
+        }
+    })
+}
+
+isLoggedin(isLogged)
+    .then(isValid)
+    .then((userData) => console.log(userData))
+    .catch((err) => console.error(err))
